@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>App Clone - Multi App Launcher</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <h1>📱 App Clone</h1>
+            <button class="menu-btn" id="menuToggle">☰</button>
+        </header>
+
+        <!-- Side Menu -->
+        <nav class="side-menu" id="sideMenu">
+            <div class="menu-header">
+                <h3>Menu</h3>
+                <button class="close-btn" id="closeMenu">✕</button>
+            </div>
+            <ul class="menu-items">
+                <li><a href="#" onclick="showHome()">🏠 Home</a></li>
+                <li><a href="#" onclick="showAddApp()">➕ Add App</a></li>
+                <li><a href="#" onclick="showSettings()">⚙️ Settings</a></li>
+                <li><a href="#" onclick="showAbout()">ℹ️ About</a></li>
+            </ul>
+        </nav>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Main Content Area -->
+        <main class="content-area" id="contentArea">
+            <!-- Home Screen (Default) -->
+            <div id="homeScreen" class="screen active">
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Apps will be loaded here dynamically -->
+                </div>
+            </div>
+
+            <!-- Add App Screen -->
+            <div id="addAppScreen" class="screen">
+                <h2>Add New App</h2>
+                <form id="addAppForm" onsubmit="addNewApp(event)">
+                    <div class="form-group">
+                        <label>App Name:</label>
+                        <input type="text" id="appName" required placeholder="Enter app name">
+                    </div>
+                    <div class="form-group">
+                        <label>App URL:</label>
+                        <input type="url" id="appUrl" required placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>App Icon (Emoji or URL):</label>
+                        <input type="text" id="appIcon" required placeholder="📱 or image URL">
+                    </div>
+                    <button type="submit" class="btn-primary">Add App</button>
+                </form>
+            </div>
+
+            <!-- Settings Screen -->
+            <div id="settingsScreen" class="screen">
+                <h2>Settings</h2>
+                <div class="settings-option">
+                    <label>Dark Mode:</label>
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="settings-option">
+                    <label>Grid Size:</label>
+                    <select id="gridSize">
+                        <option value="3">3 columns</option>
+                        <option value="4" selected>4 columns</option>
+                        <option value="5">5 columns</option>
+                    </select>
+                </div>
+                <button onclick="clearAllApps()" class="btn-danger">Clear All Apps</button>
+            </div>
+
+            <!-- About Screen -->
+            <div id="aboutScreen" class="screen">
+                <h2>About App Clone</h2>
+                <p>Version: 1.0.0</p>
+                <p>A powerful multi-app launcher that lets you add and run multiple web apps seamlessly.</p>
+                <p>Features:</p>
+                <ul>
+                    <li>✓ Add unlimited web apps</li>
+                    <li>✓ Smooth performance</li>
+                    <li>✓ No app hanging</li>
+                    <li>✓ Dark mode support</li>
+                    <li>✓ PWA enabled</li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- App Viewer Modal -->
+        <div class="app-viewer" id="appViewer">
+            <div class="app-viewer-header">
+                <h3 id="viewerTitle">App Name</h3>
+                <button class="close-viewer" onclick="closeAppViewer()">✕</button>
+            </div>
+            <div class="app-viewer-content">
+                <iframe id="appFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-presentation"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
